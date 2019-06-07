@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>三分钟带你玩转JS中的==与=== | 码路工人有力量</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="三分钟带你玩转JS中的==与===[原创内容]转载请注明出处 大家好，这里是码路工人有力量，我是码路工人，你们是力量。相信很多童鞋在刚刚接触做web用到javascript时，会搞不太清楚 == 与 === 的具体区别及用法，今天就来总结一下，欢迎交流补充及谬误斧正。 0. 让我们在例子中观察一下  123456789//eg.1 ==console.log(1 == true)     // t">
+<meta name="keywords" content="js,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三分钟带你玩转JS中的==与===">
+<meta property="og:url" content="https://codermonkie.github.io/CoderPower/2019/06/07/三分钟带你玩转==与===/index.html">
+<meta property="og:site_name" content="码路工人有力量">
+<meta property="og:description" content="三分钟带你玩转JS中的==与===[原创内容]转载请注明出处 大家好，这里是码路工人有力量，我是码路工人，你们是力量。相信很多童鞋在刚刚接触做web用到javascript时，会搞不太清楚 == 与 === 的具体区别及用法，今天就来总结一下，欢迎交流补充及谬误斧正。 0. 让我们在例子中观察一下  123456789//eg.1 ==console.log(1 == true)     // t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-07T10:56:22.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="三分钟带你玩转JS中的==与===">
+<meta name="twitter:description" content="三分钟带你玩转JS中的==与===[原创内容]转载请注明出处 大家好，这里是码路工人有力量，我是码路工人，你们是力量。相信很多童鞋在刚刚接触做web用到javascript时，会搞不太清楚 == 与 === 的具体区别及用法，今天就来总结一下，欢迎交流补充及谬误斧正。 0. 让我们在例子中观察一下  123456789//eg.1 ==console.log(1 == true)     // t">
+  
+    <link rel="alternate" href="/atom.xml" title="码路工人有力量" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码路工人有力量</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">categories</a>
+        
+          <a class="main-nav-link" href="/tags">tags</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://codermonkie.github.io/CoderPower"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-三分钟带你玩转==与===" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/07/三分钟带你玩转==与===/" class="article-date">
+  <time datetime="2019-06-07T07:17:07.000Z" itemprop="datePublished">2019-06-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      三分钟带你玩转JS中的==与===
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="三分钟带你玩转JS中的-与"><a href="#三分钟带你玩转JS中的-与" class="headerlink" title="三分钟带你玩转JS中的==与==="></a>三分钟带你玩转JS中的==与===</h1><p>[原创内容]<font>转载请注明出处</font></p>
+<h4 id="大家好，这里是码路工人有力量，我是码路工人，你们是力量。"><a href="#大家好，这里是码路工人有力量，我是码路工人，你们是力量。" class="headerlink" title="大家好，这里是码路工人有力量，我是码路工人，你们是力量。"></a>大家好，这里是码路工人有力量，我是码路工人，你们是力量。</h4><p>相信很多童鞋在刚刚接触做web用到javascript时，会搞不太清楚 <code>==</code> 与 <code>===</code> 的具体区别及用法，今天就来总结一下，欢迎交流补充及谬误斧正。</p>
+<h2 style="background-color:#0088FF">0. 让我们在例子中观察一下</h2>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//eg.1 ==</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>)     <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>)    <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//eg.2 ===</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="literal">true</span>)    <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="literal">false</span>)   <span class="comment">// false</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>思考以上<code>eg.1</code>中，如何做的隐式类型转换，让我们得到了上面两个<code>true</code>的结果呢。</p>
+<h2 style="background-color:#0088FF">1. 对于5种基本数据类型/简单类型</h2>
+
+<p>Number，string，Boolean，Null，Undefined<br><code>==</code> 与 <code>===</code>是有区别的</p>
+<ul>
+<li><code>==</code><br>通过默认隐式转换，转为同一类型，在比较value是否相等<br>隐式转换中true-&gt;1,false-&gt;0</li>
+<li><code>===</code><br>先比较类型，类型不同，则为false，类型相同再比较值。</li>
+</ul>
+<h2 style="background-color:#0088FF">2. 对于高级类型/复杂类型，<code>==</code> 与 <code>===</code>从结果上就看不出区别了。</h2>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eg.3</span></span><br><span class="line"><span class="comment">//   分别进行简单类型与简单类型，复杂类型与复杂类型的比较</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="string">'str'</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="string">'str'</span></span><br><span class="line"><span class="built_in">console</span>.log(a == b)    <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a === b)   <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 解释：a跟b的string值作为内存堆中的常量池，实际上指向的地址是相同的，===比较的是相同的地址，所以为true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj1 = &#123;a&#125;</span><br><span class="line"><span class="keyword">let</span> obj2 = &#123;a&#125;</span><br><span class="line"><span class="keyword">let</span> obj3 = &#123;b&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1 == obj2)     <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 == obj3)     <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1 === obj2)    <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 === obj3)    <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 每一个对象都是不同的对象，指向不同的地址</span></span><br></pre></td></tr></table></figure>
+
+<h2 style="background-color:#0088FF">3. 当简单类型与复杂类型比较</h2>
+也有这样的情况，比如比较 <code>[]</code> 与 <code>""</code>
+
+<ul>
+<li><p>非严格相等（<code>==</code>）</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eg.4</span></span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="string">""</span>)    <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原理：</span></span><br><span class="line"><span class="comment">// 复杂类型 [] 先转换为简单类型，</span></span><br><span class="line"><span class="comment">//   过程：先调用valueOf，再调用toString</span></span><br><span class="line">[].valueOf()    <span class="comment">// []对象</span></span><br><span class="line">[].valueOf().toString() <span class="comment">// ""</span></span><br><span class="line"><span class="comment">// 再与 "" 进行比较</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>严格相等（<code>===</code>）比较的时候由于不同类型，直接就是false了</p>
+</li>
+</ul>
+<hr>
+<h2 style="background-color:#0088FF">4. 补充</h2>
+
+<h3 id="4-1-简单地说"><a href="#4-1-简单地说" class="headerlink" title="4.1 简单地说"></a>4.1 简单地说</h3><ul>
+<li>全等操作运算符<code>===</code>，比较两个值是否相等，是严格相等比较，会比较两个值的数据类型，如果两个值的数据类型不同，那么就是不全等的。也就是说不存在隐式的类型转换。</li>
+<li>相等比较运算符<code>==</code>，两个不同简单类型的对象比较会有隐式转换。</li>
+</ul>
+<h3 id="4-2-默认的转换"><a href="#4-2-默认的转换" class="headerlink" title="4.2 默认的转换"></a>4.2 默认的转换</h3><ul>
+<li><p>以下会在判断条件中转换为 <code>false</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">null</span><br><span class="line">Nan</span><br><span class="line">0</span><br><span class="line">&quot;&quot; or &apos;&apos;</span><br><span class="line">undefined</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以下会在判断条件中转换为 <code>true</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">非0（-1,1，2，3...等）</span><br><span class="line">任何不为空的字符串或对象（如object，function，Array等）</span><br></pre></td></tr></table></figure>
+
+<p>  注意了，</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eg.5</span></span><br><span class="line"><span class="keyword">let</span> n = <span class="number">-1</span></span><br><span class="line"><span class="keyword">if</span>(n)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>被判为true了`</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>被判为false了`</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// -1被判为true了</span></span><br></pre></td></tr></table></figure>
+
+<p>  在判断条件里，<code>-1</code> 是被当成<code>true</code>了，但是，<code>-1</code>又不<code>==</code>双等于<code>true</code></p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(n == <span class="literal">true</span>)    <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>  由此可以发现，js里的if运算符对于判断条件所得出的结果与单纯的相等比较是不同的，if运算符的范畴本处不再深入讨论，放在在后面单独说说逻辑与或运算符。</p>
+</li>
+</ul>
+<hr>
+<div style="background-color:gray">做一个到达过 New C 的人，至少可以说我曾经 New B 过 ^_-</div>
+
+<hr>
+<p>算是第一篇正式的博文了，感觉很多东西没写明白，希望以后：1.坚持下去 2.做地更好。下次见。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://codermonkie.github.io/CoderPower/2019/06/07/三分钟带你玩转==与===/" data-id="cjwlzmlfi0000wcoaqcdt0i8j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/07/三分钟带你玩转==与===/">三分钟带你玩转JS中的==与===</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 码路工人<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">tags</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
