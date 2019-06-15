@@ -6,7 +6,7 @@
     "version": "3.8.0"
   },
   "scripts": {
-    "reload": "hexo g && hexo s -p 4100"
+    "reload": "hexo g && hexo s -p 4100 -o"
   },
   "dependencies": {
     "hexo": "^3.8.0",

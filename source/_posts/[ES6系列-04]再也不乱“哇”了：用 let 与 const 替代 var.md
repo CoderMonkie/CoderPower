@@ -5,9 +5,9 @@ tags: [es6,js,javascript]
 categories: [JavaScript]
 ---
 
-### 大家好，这里是码路工人有力量，我是码路工人，你们是力量。
-
 【原创】码路工人 Coder-Power
+
+### 大家好，这里是码路工人有力量，我是码路工人，你们是力量。
 
 ---
 
@@ -19,219 +19,225 @@ categories: [JavaScript]
 
 <!-- more -->
 
-1. 哇。。var 好乱。。
+# 1. 哇。。var 好乱。。
 
-    1.1 可以重复定义
-    ```javascript
-    /* eg.0
-     * multi-definition of var-variable
-     */
-    //--------------------------------------
-    var band = "The Beatles"
-    var band = "The Scorpions"
+## 1.1 可以重复定义
 
-    console.log(band)     // Scorpions
-    //--------------------------------------
-    ```
-    以上代码没有报错，而是打印出了第二次定义的内容`Scorpions`。这..在`C#`等其它语言中必然是无法想象的。
+```javascript
+/* eg.0
+    * multi-definition of var-variable
+    */
+//--------------------------------------
+var band = "The Beatles"
+var band = "The Scorpions"
 
-    > JS：哎悲惨的童年，往事不堪回首。虽然被设计的简陋粗糙了些，但用起来方便啊，通过努力，一样成为Web时代的高富帅。现在有钱了，美容养生造起来~~~
+console.log(band)     // Scorpions
+//--------------------------------------
+```
 
-    1.2 可以先使用后定义
+以上代码没有报错，而是打印出了第二次定义的内容`Scorpions`。这..在`C#`等其它语言中必然是无法想象的。
 
-    ```javascript
-    /* eg.1
-     * use before be definied
-     */
-    //--------------------------------------
-    age = 18
-    console.log(age)        // 18
-    var age = 10
-    console.log(age)        // 10
-    //--------------------------------------
-    ```
-    这就是变量提升啦。在编译的时候，会先将`var`定义的变量放到最上面，但这时候值并没有，还是`undefined`,赋值顺序为 18->10，所以有了一上例示例注释中的打印结果。
+> <font color=grey size=3>JS：哎悲惨的童年，往事不堪回首。虽然被设计的简陋粗糙了些，但用起来方便啊，通过努力，一样成为Web时代的高富帅。现在有钱了，美容养生造起来~~~</font>
 
-    > 这里，还有一个优先级的问题，`function > variable`,即函数大于普通变量。
+## 1.2 可以先使用后定义
 
-    1.3 没有块级作用域
-    ```javascript
-    /* eg.2
-     * [var]use before variable be definied
-     */
-    //--------------------------------------
-    function foo() {
-        var band = "Michael Learn To Rock"
-    }
+```javascript
+/* eg.1
+    * use before be definied
+    */
+//--------------------------------------
+age = 18
+console.log(age)        // 18
+var age = 10
+console.log(age)        // 10
+//--------------------------------------
+```
+这就是变量提升啦。在编译的时候，会先将`var`定义的变量放到最上面，但这时候值并没有，还是`undefined`,赋值顺序为 18->10，所以有了一上例示例注释中的打印结果。
 
-    console.log(band)        // Michael Learn To Rock
-    //--------------------------------------
-    ```
+> 这里，还有一个优先级的问题，`function > variable`,即函数大于普通变量。
 
-    > 块级作用域应该有：`if(boolVal){ 这里 }`，`for(...){ 这里 }`，还有`function(){ 这里 }`，其实即使不是函数直接一对花括号也是产生块级的地方。
+## 1.3 没有块级作用域
 
-    `var`没有块级作用域，意味着在块级外面也能够访问。上例中的结果说明了这一点。
+```javascript
+/* eg.2
+    * [var]use before variable be definied
+    */
+//--------------------------------------
+function foo() {
+    var band = "Michael Learn To Rock"
+}
 
-    > IIFE(Immediately Invoked Function Expression) 立即执行函数了解一下（这个准备在后面的文章中单独介绍）。
+console.log(band)        // Michael Learn To Rock
+//--------------------------------------
+```
+
+> 块级作用域应该有：`if(boolVal){ 这里 }`，`for(...){ 这里 }`，还有`function(){ 这里 }`，其实即使不是函数直接一对花括号也是产生块级的地方。
+
+`var`没有块级作用域，意味着在块级外面也能够访问。上例中的结果说明了这一点。
+
+> IIFE(Immediately Invoked Function Expression) 立即执行函数了解一下（这个准备在后面的文章中单独介绍）。
 
 ---
 
 然后咱们来看看 ES6 带来了什么
 
-2. let const 来拯救
+# 2. let const 来拯救
 
-    2.1 `let`和`const` 都有块级作用域
+## 2.1 `let`和`const` 都有块级作用域
 
-    > 码麻再也不担心我在暗处受伤害了：  
+> 码麻再也不担心我在暗处受伤害了：  
 
-    限定在块级作用域内不会被外部访问修改。
+限定在块级作用域内不会被外部访问修改。
 
-    ```javascript
-    /* eg.3
-     * can not access out of block
-     */
-    //--------------------------------------
-    // eg.3.1
-    function music() {
-        let band = "Mr. Big"
-        const songs = ["The chain", "To be with you", "Wild world"]
+```javascript
+/* eg.3
+    * can not access out of block
+    */
+//--------------------------------------
+// eg.3.1
+function music() {
+    let band = "Mr. Big"
+    const songs = ["The chain", "To be with you", "Wild world"]
 
-        this.data = {
-            band,songs
-        }
+    this.data = {
+        band,songs
     }
-    console.log(band, songs)
-    // Uncaught ReferenceError: band is not defined
-    //--------------------------------------
-    ```
-    上面的打印直接报错，函数外是不能访问到内部用`let/const`声明的变量/常量的。
-    > 扩展一下：但可以绑定到对象属性上，属性本身外部可见。如下面的示例（在上例的基础上）：
-    ```javascript
-    // eg.3.2
-    let m = new music()
-    console.log(m.data)
-    // { band: 'Mr. Big', songs: [ 'The chain', 'To be with you', 'Wild world' ] }
-    ```
+}
+console.log(band, songs)
+// Uncaught ReferenceError: band is not defined
+//--------------------------------------
+```
+上面的打印直接报错，函数外是不能访问到内部用`let/const`声明的变量/常量的。
+> 扩展一下：但可以绑定到对象属性上，属性本身外部可见。如下面的示例（在上例的基础上）：
+```javascript
+// eg.3.2
+let m = new music()
+console.log(m.data)
+// { band: 'Mr. Big', songs: [ 'The chain', 'To be with you', 'Wild world' ] }
+```
 
+## 2.2 `let`和`const` 都有不存在变量提升
 
-    2.2 `let`和`const` 都有不存在变量提升
+> 不给糖就捣蛋。要想使用先定义。
 
-    > 不给糖就捣蛋。要想使用先定义。
+```javascript
+/* eg.4
+    * [let/const]use after be definied
+    */
+//--------------------------------------
+// eg.2.1
+band = "Queen"
+let band
+// Uncaught ReferenceError: Cannot access 'band' before initialization
 
-    ```javascript
-    /* eg.4
-     * [let/const]use after be definied
-     */
-    //--------------------------------------
-    // eg.2.1
-    band = "Queen"
-    let band
-    // Uncaught ReferenceError: Cannot access 'band' before initialization
-    
-    // eg.2.2
-    song = "Bohemian Rhapsody"
-    const song
-    // Uncaught SyntaxError: Missing initializer in const declaration
-    //--------------------------------------
-    ```
-    未定义先使用？直接报错给你看。(看，报的错还不一样)
+// eg.2.2
+song = "Bohemian Rhapsody"
+const song
+// Uncaught SyntaxError: Missing initializer in const declaration
+//--------------------------------------
+```
+未定义先使用？直接报错给你看。(看，报的错还不一样，下面还会提到)
 
-    2.3 `let`和`const` 都不能重复定义
-    ```javascript
-    /* eg.4
-     * [let/const]can not defined duplicately
-     */
-    //--------------------------------------
-    // eg.4.1
-    let band = "Guns&Rose"
-    let band = "Nirvana"
-    // Uncaught SyntaxError: Identifier 'band' has already been declared
-    
-    // eg.4.2
-    const song = "November Rain"
-    const song = "Smells Like Teen Spirit"
-    // Uncaught SyntaxError: Identifier 'song' has already been declared
-    //--------------------------------------
-    ```
+## 2.3 `let`和`const` 都不能重复定义
 
-    > 简单的规则无需解释。我就是你的唯一！
+```javascript
+/* eg.4
+    * [let/const]can not defined duplicately
+    */
+//--------------------------------------
+// eg.4.1
+let band = "Guns&Rose"
+let band = "Nirvana"
+// Uncaught SyntaxError: Identifier 'band' has already been declared
 
-    2.4 let 定义变量
-    ```javascript
-    /* eg.5
-     * [let/const]can not defined duplicately
-     */
-    //--------------------------------------
-    let singer = "Bob Dylan"
-    console.log(singer)     // Bob Dylan
+// eg.4.2
+const song = "November Rain"
+const song = "Smells Like Teen Spirit"
+// Uncaught SyntaxError: Identifier 'song' has already been declared
+//--------------------------------------
+```
 
-    singer = "Bryan Adams"
-    console.log(singer)     // Bryan Adams
-    //--------------------------------------
-    ```
-    变量确实是可变的。
+> 简单的规则无需解释。我就是你的唯一！
 
-    > 注：像字符串与数值，栈中存放地址，堆中保持常量池，比较两个字面量的时候，比的是地址所以会全等（===），而再次给变量赋值的时候，改变的是地址指向，常量池中的原字符串/数值还是存在的（等没有引用会回收）。
-    
-    关于 `==` 与 `===` 可以看之前发的另一篇[传送][AboutEqual]。
+## 2.4 let 定义变量
 
-    2.5 const 定义常量
+```javascript
+/* eg.5
+    * [let/const]can not defined duplicately
+    */
+//--------------------------------------
+let singer = "Bob Dylan"
+console.log(singer)     // Bob Dylan
 
-    > JS: 终于咱也有常量了（`C#`里也叫`const`）
+singer = "Bryan Adams"
+console.log(singer)     // Bryan Adams
+//--------------------------------------
+```
+变量确实是可变的。
 
-    2.5.1 常量定义后不可变
-    ```javascript
-    /* eg.6
-     * use before be definied
-     */
-    //--------------------------------------
-    // eg.6.1
-    const band = "The Eagles"
-    band = "The Beatles"
-    // TypeError: Assignment to constant variable.
+> 注：像字符串与数值，栈中存放地址，堆中保持常量池，比较两个字面量的时候，比的是地址所以会全等（===），而再次给变量赋值的时候，改变的是地址指向，常量池中的原字符串/数值还是存在的（等没有引用会回收）。
 
-    // eg.6.2
-    const age = 18
-    age = 10
-    // TypeError: Assignment to constant variable.
-    //--------------------------------------
-    ```
-    以上两个小例子中，说明字符串或数值的常量在定义后都是不能再改变的。
+关于 `==` 与 `===` 可以看之前发的另一篇[传送][AboutEqual]。
 
-    > 注意：这里不可变是指简单类型，复杂类型/对象里面的成员/属性是可以改变的。
+## 2.5 const 定义常量
 
-    ```javascript
-    /* eg.7
-     * change the value of const-object's property
-     */
-    //--------------------------------------
-    const person = {
-        name = "Eagles",
-        age = 18
-    }
-    console.log(person) 
-    // { name: 'Eagles', age: 18 }
+> JS: 终于咱也有常量了（`C#`里也叫`const`）
 
-    person.name = "Chicken"
-    person.age = 10
-    console.log(person) 
-    // { name: 'Chicken', age: 10 }
-    //--------------------------------------
-    ```
-    以上打印结果显示，`const`对象的属性`name/age`修改成功。
+### 2.5.1 常量定义后不可变
 
-    2.5.2 常量在且仅在定义时赋值（=定义时必须赋初始值，赋值后不能改）
-    ```javascript
-    /* eg.8
-     * exception on define const
-     */
-    //--------------------------------------
-    const foo
-    foo = "bar"
-    // SyntaxError: Missing initializer in const declaration
-    //--------------------------------------
-    ```
-    不用解释，报异常了。定义`const`必须给值。（上面已经提到过了，就当加深印象再说一遍吧）
+```javascript
+/* eg.6
+    * use before be definied
+    */
+//--------------------------------------
+// eg.6.1
+const band = "The Eagles"
+band = "The Beatles"
+// TypeError: Assignment to constant variable.
+
+// eg.6.2
+const age = 18
+age = 10
+// TypeError: Assignment to constant variable.
+//--------------------------------------
+```
+以上两个小例子中，说明字符串或数值的常量在定义后都是不能再改变的。
+
+> 注意：这里不可变是指简单类型，复杂类型/对象里面的成员/属性是可以改变的。
+
+```javascript
+/* eg.7
+    * change the value of const-object's property
+    */
+//--------------------------------------
+const person = {
+    name = "Eagles",
+    age = 18
+}
+console.log(person) 
+// { name: 'Eagles', age: 18 }
+
+person.name = "Chicken"
+person.age = 10
+console.log(person) 
+// { name: 'Chicken', age: 10 }
+//--------------------------------------
+```
+以上打印结果显示，`const`对象的属性`name/age`修改成功。
+
+### 2.5.2 常量在且仅在定义时赋值（=定义时必须赋初始值，赋值后不能改）
+
+```javascript
+/* eg.8
+    * exception on define const
+    */
+//--------------------------------------
+const foo
+foo = "bar"
+// SyntaxError: Missing initializer in const declaration
+//--------------------------------------
+```
+不用解释，报异常了。定义`const`必须给值。（上面已经提到过了，就当加深印象再说一遍吧）
 
 ---
 
