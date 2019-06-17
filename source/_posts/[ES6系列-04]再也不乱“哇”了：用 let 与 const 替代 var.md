@@ -9,6 +9,9 @@ categories: [JavaScript]
 
 ### 大家好，这里是码路工人有力量，我是码路工人，你们是力量。
 
+[github-pages](https://codermonkey.github.io/CoderPower/)
+[博客园cnblogs](https://www.cnblogs.com/CoderMonkie/)
+
 ---
 
 今天的内容是，关于 JavaScript 中定义变量的变化（其实不确切，函数，常量表示被冷落）。

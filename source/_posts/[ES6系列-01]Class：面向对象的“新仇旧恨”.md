@@ -5,9 +5,12 @@ tags: [js,javascript,es6]
 categories: [JavaScript]
 ---
 
-[原创]CoderPower 码路工人  
+【原创】码路工人 Coder-Power
 
-大家好，这里是码路工人有力量，我是码路工人，你们是力量。
+### 大家好，这里是码路工人有力量，我是码路工人，你们是力量。
+
+[github-pages](https://codermonkey.github.io/CoderPower/)
+[博客园cnblogs](https://www.cnblogs.com/CoderMonkie/)
 
 ---
 
