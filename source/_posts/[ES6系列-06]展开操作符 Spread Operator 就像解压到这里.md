@@ -44,9 +44,13 @@ console.log(des)
  //----------------------------------------
 ```
 
+这直接省去了数组循环啊。
+
 ## 1.2 合并两个数组
 
 ### 合并的同时还可以另外添加其它元素
+
+<!-- more -->
 
 ```javascript
 /* eg.1
@@ -81,8 +85,8 @@ console.log(des)
  //----------------------------------------
 
 const person = {
-    name: "David",
-    age: 25
+    name: "Coder Monkey",
+    age: 18
 }
 
 const student = {
@@ -92,10 +96,10 @@ const student = {
 
 console.log(student)
 
-// {name: "David", age: 25, major: "Computer Science"}
-//   age: 25
+// {name: "Coder Monkey", age: 18, major: "Computer Science"}
+//   age: 18
 //   major: "Computer Science"
-//   name: "David"
+//   name: "Coder Monkey"
 //   __proto__: Object
 
 //----------------------------------------
@@ -167,7 +171,7 @@ console.log([...wxName])
 
 # 4.脑洞时刻
 
-## 4.1 结论：不能由数组展开为对象
+## 4.1 数组能展开为对象吗？
 
 ```javascript
 /* eg.5
@@ -175,14 +179,26 @@ console.log([...wxName])
  */
  //----------------------------------------
 
+const bands = ["Beatles", "Scorpions"]
 
+const obj = { ...bands }
+
+// {0: "Beatles", 1: "Scorpions"}
+//   0: "Beatles"
+//   1: "Scorpions"
+//   __proto__: Object
 
 //----------------------------------------
 ```
 
+是不是觉得数组与对象不能交叉展开，竟然...没错，它可以！
+惊不惊喜，意不意外？
 
+（数组下标`index`作为了对象的键`key`。）
 
-## 4.2 结论：不能由对象展开为数组
+## 4.2 那如果从对象展开为数组呢？
+
+当然也是可以的了吗？事实就是这么残酷，代码无情地抛出了异常。
 
 ```javascript
 /* eg.6
@@ -190,12 +206,24 @@ console.log([...wxName])
  */
  //----------------------------------------
 
+const objBands = { '0': 'Beatles', '1': 'Scorpions' }
+const arrBands = [...objBands]
+console.log(arrbands)
 
+// VM180:2 Uncaught TypeError:
+//   object is not iterable (cannot read property Symbol(Symbol.iterator))
 
 //----------------------------------------
 ```
 
-最后，当然也不能由对象或数组展开为字符串啦。
+最后，不能由对象或数组展开为字符串，不再例证了吧。
+
+---
+
+> 思考：都哪些是可以用`...`展开的呢？
+
+上面的示例中，数组可以展开，对象可以展开，甚至连字符串都可以。
+根本原因是，它们都是可迭代的，也就是实现/继承了`iterable`。
 
 ---
 
@@ -205,29 +233,14 @@ console.log([...wxName])
 
 **就是把它看作就地解压缩**。
 
-解压缩过程中，一般是不能改变基因，没有事实证明可以变异，所以，数组只能还是数组，JSON对象还是JSON。
-
-
-
 以上。
 
 ---
-draft
 
-eg
-let strEg1 = "Coder-Power"
-let str2Array = [...strEg1]
+希望对你能有帮助，下期再见。
 
+欢迎关注分享，一起学习提高吧。  
+QRCode/微信订阅号二维码  
+![CoderPowerQRCode](http://images.cnblogs.com/cnblogs_com/CoderMonkie/1483738/o_CoderPower_QRCode.jpg)
 
-
-let strEg2 = "Coder-Power"
-let str2Object = { ...strEg2 }
-
-
-object -> object
-array -> array
-string -> object/array
-
-object X-> array
-array X-> object
-object/array X-> string
+---
