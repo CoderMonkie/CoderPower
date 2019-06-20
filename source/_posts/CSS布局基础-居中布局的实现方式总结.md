@@ -1,8 +1,8 @@
 ---
 title: '[CSS布局基础]居中布局的实现方式总结'
 date: 2019-06-20 17:06:54
-tags:
-categories:
+tags: [CSS]
+categories: [CSS]
 ---
 
 【原创】码路工人 Coder-Power
