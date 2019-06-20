@@ -26,6 +26,8 @@ categories:
 
 ## 1.1 利用父级 **`text-align: center;`** 加子级 **`display: inline-block;`**（只要是`inline-`的都可以）实现子元素水平居中
 
+<!-- more -->
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
