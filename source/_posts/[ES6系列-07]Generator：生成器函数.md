@@ -65,10 +65,10 @@ let next = g.next()
 console.log(next)   // { value: 'Hero', done: false }
 
 next = g.next()
-console.log(next)   // { value: 'Hero', done: false }
+console.log(next)   // { value: 'Here I am', done: false }
 
 next = g.next()
-console.log(next)   // { value: 'Hero', done: false }
+console.log(next)   // { value: 'The Show', done: false }
 
 next = g.next()
 console.log(next)   // { value: undefined, done: true }
