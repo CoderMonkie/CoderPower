@@ -27,7 +27,7 @@ categories: [JavaScript]
 - 2.事件/发布--订阅者模式（event/publisher--observer）
 - 3.Promise
 - 4.Generator
-- 5.async/await（在ES7/ES2016中正式提出）
+- 5.async/await（在ES8/ES2017中正式提出）
 
 <!-- more -->
 
