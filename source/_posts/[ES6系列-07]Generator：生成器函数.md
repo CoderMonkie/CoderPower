@@ -256,7 +256,7 @@ gen.next(3)
 
 说明已贴在上面的注释中。
 
-## 4.2 可以有默认的迭代器了
+## 4.2 可以有默认的迭代器
 
 ```js
 /* eg.4
@@ -268,12 +268,15 @@ function *foo() {
     for(let i=0; i<6; i++) {
         yield i
     }
+    return 6
 }
 
 let gen = foo()
 
 for(let item of gen) {
     console.log(item)
+
+    // 0--5, return 的内容不会出现在循环中，只有 yield 后面的内容
 }
 
 // 打印结果：
@@ -284,6 +287,13 @@ for(let item of gen) {
 // 4
 // 5
 //----------------------------------------
+```
+
+## 4.3 因为可迭代，所以可以用展开运算符
+
+```js
+console.log(...gen)
+// 0 1 2 3 4 5
 ```
 
 ---
