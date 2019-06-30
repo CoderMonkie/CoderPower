@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>[ES6系列-07]Generator Function: 生成器函数 | 码路工人有力量</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="【原创】码路工人 Coder-Power 大家好，这里是码路工人有力量，我是码路工人，你们是力量。github-pages博客园cnblogs  Generator function 生成器函数是ES6中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力~0.前言要说到生成器函数，就不得不提到javascrip">
+<meta name="keywords" content="javascript,js,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ES6系列-07]Generator Function: 生成器函数">
+<meta property="og:url" content="https://codermonkie.github.io/CoderPower/2019/06/30/[ES6系列-07]Generator：生成器函数/index.html">
+<meta property="og:site_name" content="码路工人有力量">
+<meta property="og:description" content="【原创】码路工人 Coder-Power 大家好，这里是码路工人有力量，我是码路工人，你们是力量。github-pages博客园cnblogs  Generator function 生成器函数是ES6中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力~0.前言要说到生成器函数，就不得不提到javascrip">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/CoderMonkie/1483738/o_CoderPower_QRCode.jpg">
+<meta property="og:updated_time" content="2019-06-30T15:07:17.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[ES6系列-07]Generator Function: 生成器函数">
+<meta name="twitter:description" content="【原创】码路工人 Coder-Power 大家好，这里是码路工人有力量，我是码路工人，你们是力量。github-pages博客园cnblogs  Generator function 生成器函数是ES6中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力~0.前言要说到生成器函数，就不得不提到javascrip">
+<meta name="twitter:image" content="http://images.cnblogs.com/cnblogs_com/CoderMonkie/1483738/o_CoderPower_QRCode.jpg">
+  
+    <link rel="alternate" href="/CoderPower/atom.xml" title="码路工人有力量" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/CoderPower/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/CoderPower/" id="logo">码路工人有力量</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/CoderPower/">Home</a>
+        
+          <a class="main-nav-link" href="/CoderPower/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/CoderPower/categories">categories</a>
+        
+          <a class="main-nav-link" href="/CoderPower/tags">tags</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/CoderPower/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://codermonkie.github.io/CoderPower"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[ES6系列-07]Generator：生成器函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/CoderPower/2019/06/30/[ES6系列-07]Generator：生成器函数/" class="article-date">
+  <time datetime="2019-06-30T11:30:47.000Z" itemprop="datePublished">2019-06-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/CoderPower/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [ES6系列-07]Generator Function: 生成器函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>【原创】码路工人 Coder-Power</p>
+<h4 id="大家好，这里是码路工人有力量，我是码路工人，你们是力量。"><a href="#大家好，这里是码路工人有力量，我是码路工人，你们是力量。" class="headerlink" title="大家好，这里是码路工人有力量，我是码路工人，你们是力量。"></a>大家好，这里是码路工人有力量，我是码路工人，你们是力量。</h4><p><a href="https://codermonkie.github.io/CoderPower/">github-pages</a><br><a href="https://www.cnblogs.com/CoderMonkie/" target="_blank" rel="noopener">博客园cnblogs</a></p>
+<hr>
+<h4 id="Generator-function-生成器函数是ES6中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力"><a href="#Generator-function-生成器函数是ES6中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力" class="headerlink" title="Generator function 生成器函数是ES6中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力~"></a><code>Generator function 生成器函数</code>是<code>ES6</code>中新增的语法糖，本质上讲，就是以封装成一个遍历器的形式，让编码的你获得程序的执行控制权，通俗地说就是，流程控制上，踹一脚，走一步，不要太暴力~</h4><h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>要说到生成器函数，就不得不提到<code>javascript</code>的异步编程方式演进史。</p>
+<p>(不能跑题不能跑题不能跑题)</p>
+<ul>
+<li>1.普通的回调函数方式（callback）</li>
+<li>2.事件/发布–订阅者模式（event/publisher–observer）</li>
+<li>3.Promise</li>
+<li>4.Generator</li>
+<li>5.async/await（在ES7/ES2016中正式提出）</li>
+</ul>
+<p>其中<code>Promise</code>是一个里程碑，解决了回调函数嵌套时的<code>callback hell</code>回调地狱问题（层级嵌套太多难以阅读与维护）。</p>
+<p>而本文主角<code>Generator</code>更像是作为一个过渡语法，在推出<code>async/await</code>后就基本很少用了。</p>
+<p><code>async/await</code>，CSharper转前端，一看就像见到亲人，<code>C#</code>中有同样的语法。（#注：C# 5.0 中加入的）</p>
+<p>话说语法演化地真是方便啊。在后面的文章中将单独给<code>Promise</code>和<code>async/await</code>开贴。</p>
+<h1 id="1-一句话介绍你自己"><a href="#1-一句话介绍你自己" class="headerlink" title="1.一句话介绍你自己"></a>1.一句话介绍你自己</h1><h2 id="1-1-Talk-is-cheep-show-you-the-CODE"><a href="#1-1-Talk-is-cheep-show-you-the-CODE" class="headerlink" title="1.1 Talk is cheep, show you the CODE!"></a>1.1 Talk is cheep, show you the CODE!</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eg.0</span></span><br><span class="line"><span class="comment"> * Simple Example of Generator-Function</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> songs = [<span class="string">"Hero"</span>, <span class="string">"Here I am"</span>, <span class="string">"The Show"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generator-Function is Here Below：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">play</span>(<span class="params">songs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;songs.length; i++) &#123;</span><br><span class="line">        <span class="keyword">yield</span> songs[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 这里可以有return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> g = play(songs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> next = g.next()</span><br><span class="line"><span class="built_in">console</span>.log(next)   <span class="comment">// &#123; value: 'Hero', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">next = g.next()</span><br><span class="line"><span class="built_in">console</span>.log(next)   <span class="comment">// &#123; value: 'Hero', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">next = g.next()</span><br><span class="line"><span class="built_in">console</span>.log(next)   <span class="comment">// &#123; value: 'Hero', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">next = g.next()</span><br><span class="line"><span class="built_in">console</span>.log(next)   <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-关于生成器函数的定义"><a href="#1-2-关于生成器函数的定义" class="headerlink" title="1.2 关于生成器函数的定义"></a>1.2 关于生成器函数的定义</h2><ul>
+<li><p>第一，函数定义处有个<code>*</code>符号。</p>
+<p><code>*</code>既可以紧跟在<code>function</code>后面，也可以贴在函数名前。</p>
+</li>
+<li><p>第二，函数内有<code>yield</code>关键字</p>
+<p>用以中断处理流程，并可以临时对外提供一个返回值。</p>
+</li>
+<li><p>其它，写法上与普通函数无异</p>
+</li>
+</ul>
+<h2 id="1-3-关于生成器函数的使用"><a href="#1-3-关于生成器函数的使用" class="headerlink" title="1.3 关于生成器函数的使用"></a>1.3 关于生成器函数的使用</h2><ul>
+<li><p>1.像普通函数一样调用，得到的不是任何具体的返回值，而是一个迭代器。（也可以看作是一个状态机）</p>
+</li>
+<li><p>2.来一脚试试。通过调用得到的迭代器对象上的<code>next()</code>方法，开始得到第一个返回值对象。</p>
+</li>
+<li><p>3.一直踹。每一次调用<code>next()</code>方法，得到一个结果对象，可以看到上面代码注释中的打印信息。</p>
+<p>其中<code>value</code>即当前获得的值，<code>done</code>即迭代状态，它只有<code>ture/false</code>两种可能，当它变为<code>true</code>，即迭代完成。</p>
+</li>
+</ul>
+<h1 id="2-主流使用方式"><a href="#2-主流使用方式" class="headerlink" title="2.主流使用方式"></a>2.主流使用方式</h1><p>正常的使用方式也即良好的实践吧，应该是配合<code>promise</code>来使用的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eg.1</span></span><br><span class="line"><span class="comment"> * Simple Example of Generator-Function</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 这里应该是ajax请求，结果是一个promise对象，简单模拟一下</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        resolve(<span class="string">'Hello'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 这里应该是ajax请求，结果是一个promise对象，简单模拟一下</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        resolve(<span class="string">'World'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> g = func()</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'log-1:'</span>, data)</span><br><span class="line">    <span class="keyword">return</span> g.next().value</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'log-2:'</span>, data)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// log-1: Hello</span></span><br><span class="line"><span class="comment">// log-2: World</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="这样，就将异步的ajax处理简单地以同步的样子书写出来了。"><a href="#这样，就将异步的ajax处理简单地以同步的样子书写出来了。" class="headerlink" title="这样，就将异步的ajax处理简单地以同步的样子书写出来了。"></a>这样，就将异步的<code>ajax</code>处理简单地以同步的样子书写出来了。</h4><h1 id="3-粗陋的实践"><a href="#3-粗陋的实践" class="headerlink" title="3.粗陋的实践"></a>3.粗陋的实践</h1><h4 id="除了可以处理异步，码路工人个人觉得，Generator比较适合用在循环处理的场景。其中就实践过类似下面这个处理的例子："><a href="#除了可以处理异步，码路工人个人觉得，Generator比较适合用在循环处理的场景。其中就实践过类似下面这个处理的例子：" class="headerlink" title="除了可以处理异步，码路工人个人觉得，Generator比较适合用在循环处理的场景。其中就实践过类似下面这个处理的例子："></a>除了可以处理异步，码路工人个人觉得，<code>Generator</code>比较适合用在循环处理的场景。其中就实践过类似下面这个处理的例子：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eg.2 （part1）</span></span><br><span class="line"><span class="comment"> * My Example of Generator-Function</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br><span class="line"><span class="comment">// 以下代码中都省略掉了检测处理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 首先来一个Gernerator函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">getDateInPeriod</span>(<span class="params">from, to, includEnd=false</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> fromDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">from</span>)</span><br><span class="line">    <span class="keyword">let</span> toDate = <span class="keyword">new</span> <span class="built_in">Date</span>(to)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(includEnd) &#123;</span><br><span class="line">        toDate = addDays(toDate, <span class="number">1</span>)</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> date = fromDate;date &lt; toDate; date=addDays(date, <span class="number">1</span>)) &#123;</span><br><span class="line">        <span class="keyword">yield</span> date</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面调用到了工具函数addDays</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addDays</span>(<span class="params">date, days</span>)</span>&#123;</span><br><span class="line">    date = <span class="keyword">new</span> <span class="built_in">Date</span>(date.setDate(date.getDate() + days))</span><br><span class="line">    <span class="keyword">return</span> date</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="然后就是使用了，在循环取值的过程中，会有一些业务处理（同步的或异步的）。"><a href="#然后就是使用了，在循环取值的过程中，会有一些业务处理（同步的或异步的）。" class="headerlink" title="然后就是使用了，在循环取值的过程中，会有一些业务处理（同步的或异步的）。"></a>然后就是使用了，在循环取值的过程中，会有一些业务处理（同步的或异步的）。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eg.2 （part2）</span></span><br><span class="line"><span class="comment"> * My Example of Generator-Function</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrDate = getDateInPeriod(<span class="string">'2019-06-06'</span>, <span class="string">'2019-06-30'</span>, <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> daysInPeriod = arrDate.next()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(!daysInPeriod.done) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里是一堆其它业务处理</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(daysInperiod)</span><br><span class="line"></span><br><span class="line">    daysInPeriod = arrDate.next()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(daysInperiod)</span><br><span class="line"></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<p>打印信息结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">value</span>: <span class="number">2019</span><span class="number">-06</span><span class="number">-06</span>T00:<span class="number">00</span>:<span class="number">00.000</span>Z, <span class="attr">done</span>: <span class="literal">false</span> &#125;</span><br><span class="line">&#123; <span class="attr">value</span>: <span class="number">2019</span><span class="number">-06</span><span class="number">-07</span>T00:<span class="number">00</span>:<span class="number">00.000</span>Z, <span class="attr">done</span>: <span class="literal">false</span> &#125;</span><br><span class="line">...</span><br><span class="line">&#123; <span class="attr">value</span>: <span class="number">2019</span><span class="number">-06</span><span class="number">-29</span>T00:<span class="number">00</span>:<span class="number">00.000</span>Z, <span class="attr">done</span>: <span class="literal">false</span> &#125;</span><br><span class="line">&#123; <span class="attr">value</span>: <span class="number">2019</span><span class="number">-06</span><span class="number">-30</span>T00:<span class="number">00</span>:<span class="number">00.000</span>Z, <span class="attr">done</span>: <span class="literal">false</span> &#125;</span><br><span class="line">&#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-听说过的实践"><a href="#4-听说过的实践" class="headerlink" title="4.听说过的实践"></a>4.听说过的实践</h1><p>这个码工没有实践过，大意是，<code>Generator</code>函数这个语法糖是按照<code>yield</code>将代码分成多个部分，人手工控制执行每一部分，于是，封装一个执行器函数，简化流程控制，使异步编程轻松愉快。</p>
+<p>其实，在有了<code>async/await</code>后真的没有这个必要了。</p>
+<p>（<code>co.js</code>就是一个这种<code>Generator</code>的执行库）</p>
+<h1 id="4-其它"><a href="#4-其它" class="headerlink" title="4.其它"></a>4.其它</h1><p>除了上面介绍的生成器函数的主要用法，其实还有点其它小特性，码路工人并没有实践过，感觉也不怎么会用到，这里稍作了解即可。</p>
+<h2 id="4-1-可以接收由next传递进的参数。"><a href="#4-1-可以接收由next传递进的参数。" class="headerlink" title="4.1 可以接收由next传递进的参数。"></a>4.1 可以接收由<code>next</code>传递进的参数。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eg.3</span></span><br><span class="line"><span class="comment"> * parameters</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">genFunc</span>(<span class="params">p</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`p is <span class="subst">$&#123;p&#125;</span>`</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> p1 = <span class="keyword">yield</span> p</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`p1 is <span class="subst">$&#123;p1&#125;</span>`</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> p2 = <span class="keyword">yield</span> p1</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`p2 is <span class="subst">$&#123;p2&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gen = genFunc(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 第一次next无法传参到Generator函数，应该由最初的函数调用处传递</span></span><br><span class="line">gen.next(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从第二步next() 传的参数，在第一个yield处接收</span></span><br><span class="line">gen.next(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p>关于给<code>yield</code>传参确实看起来稍微有一点诡异，其实理解了也就不觉得奇怪了。</p>
+<p>说明已贴在上面的注释中。</p>
+<h2 id="4-2-可以有默认的迭代器了"><a href="#4-2-可以有默认的迭代器了" class="headerlink" title="4.2 可以有默认的迭代器了"></a>4.2 可以有默认的迭代器了</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eg.4</span></span><br><span class="line"><span class="comment"> * get value by for-of loop</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gen = foo()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> gen) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印结果：</span></span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br><span class="line"><span class="comment">//----------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于生成器函数<code>Generator Function</code>就介绍到这里吧，</p>
+<p>这要知道有这个语法糖就可以了，反正以后还真不一定用得到</p>
+<p>异步处理主要用到的还是<code>Promise</code>跟<code>async/await</code>。</p>
+<p>&emsp;</p>
+<p>以上。</p>
+<p>希望对你能有帮助，下期再见。</p>
+<center>- END -
+
+<hr>
+<p>欢迎关注分享，一起学习提高吧。<br>QRCode/微信订阅号二维码<br><img src="http://images.cnblogs.com/cnblogs_com/CoderMonkie/1483738/o_CoderPower_QRCode.jpg" alt="CoderPowerQRCode"></p>
+<hr>
+</center>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://codermonkie.github.io/CoderPower/2019/06/30/[ES6系列-07]Generator：生成器函数/" data-id="cjxj39554000dkgoa8ieftyzz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/CoderPower/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/CoderPower/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/CoderPower/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/CoderPower/2019/06/20/CSS布局基础-居中布局的实现方式总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[CSS布局基础]居中布局的实现方式总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/CoderPower/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/CoderPower/categories/JavaScript/">JavaScript</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/CoderPower/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/CoderPower/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/CoderPower/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/CoderPower/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/CoderPower/tags/js/">js</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/CoderPower/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/CoderPower/tags/ES6/" style="font-size: 13.33px;">ES6</a> <a href="/CoderPower/tags/es6/" style="font-size: 16.67px;">es6</a> <a href="/CoderPower/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/CoderPower/tags/js/" style="font-size: 20px;">js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/CoderPower/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/CoderPower/2019/06/30/[ES6系列-07]Generator：生成器函数/">[ES6系列-07]Generator Function: 生成器函数</a>
+          </li>
+        
+          <li>
+            <a href="/CoderPower/2019/06/20/CSS布局基础-居中布局的实现方式总结/">[CSS布局基础]居中布局的实现方式总结</a>
+          </li>
+        
+          <li>
+            <a href="/CoderPower/2019/06/18/[ES6系列-06]展开操作符 Spread Operator 就像解压到这里/">[ES6系列-06]展开操作符 Spread Operator 就像解压到这里</a>
+          </li>
+        
+          <li>
+            <a href="/CoderPower/2019/06/17/[ES6系列-05]字符相关操作更方便/">[ES6系列-05]字符串相关操作更方便</a>
+          </li>
+        
+          <li>
+            <a href="/CoderPower/2019/06/14/[ES6系列-04]再也不乱“哇”了：用 let 与 const 替代 var/">[ES6系列-04]再也不乱“哇”了：用 let 与 const 替代 var</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 码路工人<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/CoderPower/" class="mobile-nav-link">Home</a>
+  
+    <a href="/CoderPower/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/CoderPower/categories" class="mobile-nav-link">categories</a>
+  
+    <a href="/CoderPower/tags" class="mobile-nav-link">tags</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/CoderPower/fancybox/jquery.fancybox.css">
+  <script src="/CoderPower/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/CoderPower/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
