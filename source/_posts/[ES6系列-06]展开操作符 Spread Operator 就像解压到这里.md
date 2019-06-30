@@ -1,15 +1,15 @@
 ---
 title: '[ES6系列-06]展开操作符 Spread Operator 就像解压到这里'
 date: 2019-06-18 10:13:41
-tags:
-categories:
+tags: [ES6,js,javascript]
+categories: [JavaScript]
 ---
 
 【原创】码路工人 Coder-Power
 
 #### 大家好，这里是码路工人有力量，我是码路工人，你们是力量。
 
-[github-pages](https://codermonkey.github.io/CoderPower/)  
+[github-pages](https://codermonkie.github.io/CoderPower/)  
 [博客园cnblogs](https://www.cnblogs.com/CoderMonkie/)
 
 ---
