@@ -6,7 +6,8 @@
     "version": "3.9.0"
   },
   "scripts": {
-    "reload": "hexo g && hexo s -p 4100 -o"
+    "reload": "hexo g && hexo s -p 4100 -o",
+    "test": "node ./.temp/test.js"
   },
   "dependencies": {
     "hexo": "^3.8.0",
