@@ -1,8 +1,10 @@
 ---
+
 title: JavaScript之不可亵玩系列-03 用正则做密码校验
 date: 2019-08-29 12:01:00
 tags: [javascript,js,regularexpression]
 categories: [JavaScript]
+
 ---
 
 【原创】码路工人 Coder-Power
@@ -53,7 +55,7 @@ categories: [JavaScript]
     - 可以包含两种
     - 可以包含三种
     - 不可以只包含一种  
-    
+
     ```js
       // 第一组
       (?!^\d+$)       // 不管有几位，只要全是数字，就不对
@@ -112,7 +114,7 @@ categories: [JavaScript]
 
     “这位同学本不懂正则，写的多了也便懂得了。”
 
-    码路工人也计划通过多写写来掌握一个这个神器，  
+    每次写每次查语法的码路工人也计划通过多写写来掌握一下这个神器，  
     边写边学，一路有你，走起~
 
 
