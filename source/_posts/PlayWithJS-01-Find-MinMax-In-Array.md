@@ -1,5 +1,5 @@
 ---
-title: PlayWithJS-01-Find-MinMax-In-Array
+title: JavaScript之不可亵玩系列-01 查找数组中最大最小值
 date: 2019-08-29 12:00:00
 tags: [javascript,js]
 categories: [JavaScript]
