@@ -14,7 +14,7 @@ categories: [JavaScript]
 
 ---
 
-> ## JavaScript之不可亵玩系列-01 数组的随机排序
+> ## JavaScript之不可亵玩系列-02 数组的随机排序
 
 > ## 今日玩法：
 
