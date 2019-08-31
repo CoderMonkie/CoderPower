@@ -2,7 +2,7 @@
 title: JiNan-New-FreeTradArea
 date: 2019-09-01 02:08:38
 tags: [talk]
-categories:
+categories: [talk]
 ---
 
 [身边时事]我们是自贸区了

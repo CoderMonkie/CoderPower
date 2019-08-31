@@ -1,8 +1,8 @@
 ---
 title: Hello! Long time no see.
 date: 2019-09-01 02:32:18
-tags:[talk]
-categories:
+tags: [talk]
+categories: [talk]
 ---
 
 大家好，我，码路工人，~~打钱~~ 。
